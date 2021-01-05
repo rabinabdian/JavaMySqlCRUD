@@ -2,6 +2,8 @@ package com.company;
 
 import java.sql.*;
 
+import static java.lang.Math.random;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -23,7 +25,9 @@ public class Main {
                 String queryInsert = "insert into users(user_id, username,password,fullname,email) values ('8','AAA','0000','ASSESSES','a@a.com')";
                 String querySelectAll = "select * from users";
                 String querySelectByUserID = "select * from users where user_id = 6";
-
+                String queryUpdateByUserID = "update users set user_id = "+random() * (100 - 20 + 1)+"where user_id = 8";
+                ps=conn.prepareStatement(queryUpdateByUserID);
+                ps.executeUpdate();
                 ps=conn.prepareStatement(queryInsert);
                 ps.executeUpdate();
                 System.out.println("Inserted");
