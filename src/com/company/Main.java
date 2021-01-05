@@ -20,8 +20,9 @@ public class Main {
 
             if (conn != null) {
                 System.out.println("Connected");
-                String queryInsert = "insert into users(user_id, username,password,fullname,email) values ('6','AAA','0000','ASSESSES','a@a.com')";
+                String queryInsert = "insert into users(user_id, username,password,fullname,email) values ('8','AAA','0000','ASSESSES','a@a.com')";
                 String querySelectAll = "select * from users";
+                String querySelectByUserID = "select * from users where user_id = 6";
 
                 ps=conn.prepareStatement(queryInsert);
                 ps.executeUpdate();
@@ -29,7 +30,9 @@ public class Main {
                 ps=conn.prepareStatement(querySelectAll);
                 rs = ps.executeQuery();
                 printSelectAll(rs);
-
+                ps=conn.prepareStatement(querySelectByUserID);
+                rs = ps.executeQuery();
+                printSelectAll(rs);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -41,6 +44,7 @@ public class Main {
         ResultSetMetaData metaData = rs.getMetaData();
 
         int columnCount = metaData.getColumnCount();
+        System.out.println("****************************************************");
         while(rs.next()) {
             for(int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 Object object = rs.getObject(columnIndex);
