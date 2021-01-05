@@ -20,7 +20,7 @@ public class Main {
 
             if (conn != null) {
                 System.out.println("Connected");
-                String queryInsert = "insert into users(user_id, username,password,fullname,email) values ('5','AAA','0000','ASSESSES','a@a.com')";
+                String queryInsert = "insert into users(user_id, username,password,fullname,email) values ('6','AAA','0000','ASSESSES','a@a.com')";
                 String querySelectAll = "select * from users";
 
                 ps=conn.prepareStatement(queryInsert);
@@ -28,19 +28,25 @@ public class Main {
                 System.out.println("Inserted");
                 ps=conn.prepareStatement(querySelectAll);
                 rs = ps.executeQuery();
+                printSelectAll(rs);
 
-                ResultSetMetaData metaData = rs.getMetaData();
-                int columnCount = metaData.getColumnCount();
-                while(rs.next()) {
-                    for(int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                        Object object = rs.getObject(columnIndex);
-                        System.out.printf("%s, ", object == null ? "NULL" : object.toString());
-                    }
-                    System.out.printf("%n");}
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    private static void printSelectAll(ResultSet rs) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        int columnCount = metaData.getColumnCount();
+        while(rs.next()) {
+            for(int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                Object object = rs.getObject(columnIndex);
+                System.out.printf("%s, ", object == null ? "NULL" : object.toString());
+            }
+            System.out.printf("%n");}
 
     }
 }
