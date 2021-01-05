@@ -19,10 +19,10 @@ public class Main {
 
             if (conn != null) {
                 System.out.println("Connected");
-                String query = "insert into users(user_id, username,password,fullname,email) values ('1','AAA','0000','ASSESSES','a@a.com')";
+                String query = "insert into users(user_id, username,password,fullname,email) values ('2','AAA','0000','ASSESSES','a@a.com')";
                 ps=conn.prepareStatement(query);
                 ps.executeUpdate();
-                System.out.println("Updated");
+                System.out.println("Inserted");
 
             }
         } catch (SQLException ex) {
